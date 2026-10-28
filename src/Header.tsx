@@ -11,6 +11,9 @@ import { Close, WhatsApp } from './icons'
   Under 720px the centre links give way to a Menu button that opens a sheet —
   with the sections on separate pages, phones need a way to reach them.
 */
+/* the wide-screen nav has room for one word each */
+const SHORT = { services: 'Services', gallery: 'Gallery', about: 'About', visit: 'Visit' }
+
 export default function Header({ current }: { current: PageKey }) {
   const [menu, setMenu] = useState(false)
 
@@ -89,7 +92,7 @@ export default function Header({ current }: { current: PageKey }) {
                 paddingBottom: 3,
               }}
             >
-              {n.key === 'services' ? 'Services' : n.name.replace(' us', '')}
+              {SHORT[n.key]}
             </a>
           )
         })}

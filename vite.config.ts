@@ -18,6 +18,7 @@ export default defineConfig({
         home: resolve(__dirname, 'index.html'),
         services: resolve(__dirname, 'services/index.html'),
         gallery: resolve(__dirname, 'gallery/index.html'),
+        about: resolve(__dirname, 'about/index.html'),
         visit: resolve(__dirname, 'visit/index.html'),
       },
     },

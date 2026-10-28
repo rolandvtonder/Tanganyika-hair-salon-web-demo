@@ -15,13 +15,13 @@ export default function PageLinks({ current, title }: { current: PageKey; title:
         <h2 id="pagelinks-h" className="label" style={{ margin: 0, color: 'var(--color-gold)' }}>
           {title}
         </h2>
-        <ul className={`m-0 mt-6 grid list-none gap-4 p-0 ${pages.length === 3 ? 'md:grid-cols-3' : 'sm:grid-cols-2'}`}>
+        <ul className={`m-0 mt-6 grid list-none gap-4 p-0 ${pages.length === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'}`}>
           {pages.map((p) => (
             <li key={p.key}>
               <a
                 href={p.href}
                 className="group relative block overflow-hidden text-white no-underline"
-                style={{ aspectRatio: pages.length === 3 ? '4 / 3' : '16 / 9', borderRadius: 32, border: '1px solid rgba(201,162,63,0.4)' }}
+                style={{ aspectRatio: '4 / 3', borderRadius: 32, border: '1px solid rgba(201,162,63,0.4)' }}
               >
                 <img
                   src={img(p.photo)}

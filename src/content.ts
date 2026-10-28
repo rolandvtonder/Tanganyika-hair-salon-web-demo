@@ -141,9 +141,72 @@ export const img = (id: string, size: 'sm' | 'lg' = 'sm') => url(`/media/cut-${i
 
 /* The site's pages. Each is its own HTML file (see vite.config.ts), so they
    work on any static host with no rewrite rules. */
-export type PageKey = 'home' | 'services' | 'gallery' | 'visit'
+export type PageKey = 'home' | 'services' | 'gallery' | 'about' | 'visit'
 export const PAGES: { key: Exclude<PageKey, 'home'>; name: string; href: string; blurb: string; photo: string }[] = [
   { key: 'services', name: 'Services & prices', href: url('/services/'), blurb: 'Fades, beards, braids, twists and kids’ cuts', photo: '31' },
   { key: 'gallery', name: 'Gallery', href: url('/gallery/'), blurb: 'Sixty fresh cuts, straight off the chair', photo: '26' },
+  { key: 'about', name: 'About & FAQ', href: url('/about/'), blurb: 'How a visit works, and your questions answered', photo: '02' },
   { key: 'visit', name: 'Visit us', href: url('/visit/'), blurb: 'Hours, directions and how to book', photo: '20' },
+]
+
+/*
+  About page. Everything here is drawn from what the rest of the site already
+  says — no invented history, staff or awards. Add the salon's real story to
+  ABOUT.story when you have it.
+*/
+export const ABOUT = {
+  story: [
+    'Tanganyika is a barber and hair salon in Alberton for the whole family — men, ladies and kids.',
+    'Most days the chairs are busy with skin fades, beard line-ups and kids’ cuts, alongside braids, cornrows and twists that take a little longer. Walk in for a quick clean-up, or WhatsApp ahead for a bigger style and we will keep a chair for you.',
+  ],
+  photos: ['01', '12', '14'],
+  steps: [
+    { title: 'Walk in or WhatsApp', text: 'Come straight through, or send us a message with the time that suits you. For braids and longer styles, message first.' },
+    { title: 'Show us the look', text: 'Tell us what you want, or bring a photo. Not sure? Your barber will help you choose something that suits your hair and face.' },
+    { title: 'Take a seat', text: 'Fades blended by hand, lines kept clean, and real time taken over every head — no rushing you out of the chair.' },
+    { title: 'Leave sharp', text: 'Check it in the mirror before you go, then head out looking fresh — until next time.' },
+  ],
+}
+
+/*
+  FAQ. `link` adds a button under the answer.
+  Deliberately missing until the salon confirms them: payment methods,
+  parking, and exact appointment times — add them here when known.
+*/
+export const FAQ: { q: string; a: string; link?: { label: string; href: string } }[] = [
+  {
+    q: 'Do I need to book, or can I just walk in?',
+    a: 'Walk-ins are welcome for cuts, fades and beard work. For braids, twists and longer ladies’ styles, send us a WhatsApp first so we can keep a chair free for you.',
+  },
+  {
+    q: 'How do I book?',
+    a: 'The quickest way is WhatsApp: tell us what you would like done and when you would like to come in, and we will confirm a time. You can also give us a call.',
+    link: { label: 'Book on WhatsApp', href: whatsappHref() },
+  },
+  {
+    q: 'How much does a cut cost?',
+    a: 'Prices depend on the style. See our services list, or WhatsApp us a photo of the look you want and we will tell you the price before you come in.',
+    link: { label: 'Services & prices', href: url('/services/') },
+  },
+  {
+    q: 'Do you cut kids’ hair?',
+    a: 'Yes — kids of all ages. Our barbers are patient with little ones, whether it is their first cut or their fiftieth.',
+  },
+  {
+    q: 'Do you do ladies’ hair?',
+    a: 'Yes. We do ladies’ cuts, wash and style, and braids. Send us a WhatsApp about the style you have in mind so we can tell you how long it will take.',
+  },
+  {
+    q: 'Can I bring a photo of the style I want?',
+    a: 'Please do. A photo is the easiest way to show us exactly what you are after — fades, parts, designs or braid patterns.',
+  },
+  {
+    q: 'How long will I be in the chair?',
+    a: 'A cut or fade is usually the quickest; braids, cornrows and twists take longer depending on your hair length and the pattern. Ask us on WhatsApp and we will give you an idea before you come in.',
+  },
+  {
+    q: 'When are you open, and where are you?',
+    a: `We are in ${BUSINESS.area}. Our trading hours, address and a map are all on the Visit page.`,
+    link: { label: 'Hours & directions', href: url('/visit/') },
+  },
 ]

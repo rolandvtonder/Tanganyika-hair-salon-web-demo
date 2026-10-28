@@ -168,3 +168,18 @@ dialog.lightbox::backdrop { background: rgba(6, 5, 4, 0.7); }
 @media (min-width: 768px) {
   .fab { display: none !important; }
 }
+
+/* FAQ accordion (About page): native <details>, restyled */
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary { transition: color 180ms ease; }
+.faq summary:hover { color: var(--color-gold-hi); }
+.faq-icon {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 220ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.faq[open] .faq-icon {
+  transform: rotate(45deg);
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-ink);
+}

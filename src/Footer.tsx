@@ -30,6 +30,7 @@ const COLUMNS = [
       { t: 'WhatsApp', href: whatsappHref(), ext: true },
       { t: 'Facebook', href: BUSINESS.facebook, ext: true },
       { t: 'Gallery', href: url('/gallery/') },
+      { t: 'About & FAQ', href: url('/about/') },
     ],
   },
 ]
