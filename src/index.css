@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/*
+  Tanganyika Hair Salon.
+
+  Structure and motion come from the Marlin build: a near-black page, one
+  accent, a wide display face over a humanist text face. The accent is the
+  logo's gold, measured off logo.jpg at about #B0902F and lifted to #C9A23F so
+  it reads at 4.5:1+ as text on the ink. As in Marlin it is spent sparingly —
+  the mark, the active index number, primary actions, rules.
+
+  Faces:
+      Anybody at wdth 125   wide display, close to the logo's spaced capitals
+      Manrope               text
+      Cormorant italic      the odd accent word, for the salon's softer side
+*/
+@theme {
+  --color-ink: #0b0a09;
+  --color-ink-2: #12100e;
+  --color-ink-3: #1a1714;
+  --color-bone: #ffffff;
+  --color-gold: #c9a23f;
+  --color-gold-hi: #e2bf63;
+
+  --font-display: "Anybody", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-accent: "Cormorant", Georgia, serif;
+}
+
+html, body, #root { margin: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Section anchors land below the fixed header. */
+section[id] { scroll-margin-top: 72px; }
+
+/* Wide display type. Extended by design, not tracked. */
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125, "wght" 800;
+  letter-spacing: -0.01em;
+  line-height: 0.88;
+  color: #fff;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125, "wght" 500;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.accent {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--color-gold-hi);
+}
+
+.glass {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 26px 50px -26px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 125, "wght" 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 120ms ease;
+  touch-action: manipulation;
+}
+.btn:active { transform: scale(0.97); }
+.btn-gold { background: var(--color-gold); color: var(--color-ink); border: 1px solid var(--color-gold); }
+.btn-gold:hover { background: var(--color-gold-hi); border-color: var(--color-gold-hi); }
+.btn-ghost { background: rgba(11, 10, 9, 0.25); color: #fff; border: 1px solid rgba(255, 255, 255, 0.45); }
+.btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+.link-underline {
+  color: inherit;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 220ms ease, color 180ms ease;
+}
+.link-underline:hover { background-size: 100% 1px; color: #fff; }
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-gold-hi);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.btn:focus-visible { border-radius: 999px; }
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--color-gold);
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 150ms ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* The header is outside any scaled artboard so it stays readable at every
+   width. Below phone width the centre links step aside; the logo and the
+   Book action still fit. !important because the nav's layout is an inline
+   style, which would otherwise win. */
+@media (max-width: 720px) {
+  .nav-links { display: none !important; }
+}
+
+/* ...and on phones the centre links become a Menu button. The header's Book
+   button steps aside there too: the floating WhatsApp button covers booking,
+   and the logo, wordmark, Book and Menu do not all fit across 375px. */
+.nav-menu-btn { display: none; }
+@media (max-width: 720px) {
+  .nav-menu-btn { display: inline-flex; }
+  .header-book { display: none !important; }
+}
+
+/* Gallery lightbox */
+dialog.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(6, 5, 4, 0.94);
+  color: #fff;
+}
+dialog.lightbox::backdrop { background: rgba(6, 5, 4, 0.7); }
+
+/* Floating WhatsApp button, phones only. A class rather than Tailwind's
+   md:hidden, which loses to .btn's display (unlayered CSS beats utilities). */
+@media (min-width: 768px) {
+  .fab { display: none !important; }
+}
