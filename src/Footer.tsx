@@ -4,7 +4,7 @@
   wordmark fading out at the bottom. The newsletter box became a booking
   band — a salon's visitors want a chair, not a mailing list.
 */
-import { BUSINESS, HOURS, SERVICES, whatsappHref, directionsHref } from './content'
+import { BUSINESS, HOURS, SERVICES, whatsappHref, directionsHref, url } from './content'
 import { WhatsApp, Phone, Facebook } from './icons'
 
 const fmt = (d: number) => {
@@ -13,14 +13,14 @@ const fmt = (d: number) => {
 }
 
 const COLUMNS = [
-  { head: 'Services', links: SERVICES.flatMap((g) => g.items.slice(0, 2)).map((s) => ({ t: s.name, href: '/services/' })) },
+  { head: 'Services', links: SERVICES.flatMap((g) => g.items.slice(0, 2)).map((s) => ({ t: s.name, href: url('/services/') })) },
   {
     head: 'Hours',
     links: [
-      { t: `Mon – Thu  ${fmt(1)}`, href: '/visit/' },
-      { t: `Fri  ${fmt(5)}`, href: '/visit/' },
-      { t: `Sat  ${fmt(6)}`, href: '/visit/' },
-      { t: `Sun  ${fmt(0)}`, href: '/visit/' },
+      { t: `Mon – Thu  ${fmt(1)}`, href: url('/visit/') },
+      { t: `Fri  ${fmt(5)}`, href: url('/visit/') },
+      { t: `Sat  ${fmt(6)}`, href: url('/visit/') },
+      { t: `Sun  ${fmt(0)}`, href: url('/visit/') },
     ],
   },
   {
@@ -29,7 +29,7 @@ const COLUMNS = [
       { t: 'Directions', href: directionsHref(), ext: true },
       { t: 'WhatsApp', href: whatsappHref(), ext: true },
       { t: 'Facebook', href: BUSINESS.facebook, ext: true },
-      { t: 'Gallery', href: '/gallery/' },
+      { t: 'Gallery', href: url('/gallery/') },
     ],
   },
 ]
@@ -95,7 +95,7 @@ export default function Footer() {
         <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
           <div style={{ flex: '1 1 300px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <img src="/media/logo-192.webp" alt="" width={52} height={52} loading="lazy" style={{ borderRadius: '50%' }} />
+              <img src={url('/media/logo-192.webp')} alt="" width={52} height={52} loading="lazy" style={{ borderRadius: '50%' }} />
               <span className="display" style={{ fontSize: 17, letterSpacing: '0.12em', fontVariationSettings: '"wdth" 125, "wght" 700' }}>
                 {BUSINESS.short.toUpperCase()}
               </span>

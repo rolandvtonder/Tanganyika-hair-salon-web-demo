@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import type { ReactNode } from 'react'
-import { CARDS, img, whatsappHref } from './content'
+import { CARDS, img, whatsappHref, url } from './content'
 import OpenCard from './OpenCard'
 import { ArrowRight, ArrowUpRight, WhatsApp } from './icons'
 
@@ -68,7 +68,7 @@ export default function FlowHero() {
                 <WhatsApp size={17} />
                 Book on WhatsApp
               </a>
-              <a href="/gallery/" className="btn btn-ghost">
+              <a href={url('/gallery/')} className="btn btn-ghost">
                 See the work
                 <ArrowRight size={14} />
               </a>
@@ -85,7 +85,7 @@ export default function FlowHero() {
           {CARDS.map((c, i) => (
             <Rise key={c.photo} delay={i * 0.06}>
               <a
-                href="/services/"
+                href={url('/services/')}
                 aria-label={`${c.label.join(' ')} — see services`}
                 className="relative block overflow-hidden text-white no-underline"
                 style={{ aspectRatio: '255 / 215', borderRadius: 28, border: '1px solid rgba(201,162,63,0.45)' }}
@@ -136,10 +136,10 @@ export default function FlowHero() {
             whole family — men, ladies and kids. Pull up a chair and leave looking sharp.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="/services/" className="btn btn-ghost">
+            <a href={url('/services/')} className="btn btn-ghost">
               Services & prices
             </a>
-            <a href="/visit/" className="btn btn-ghost">
+            <a href={url('/visit/')} className="btn btn-ghost">
               Find us
             </a>
           </div>

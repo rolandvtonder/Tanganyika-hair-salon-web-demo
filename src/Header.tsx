@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BUSINESS, PAGES, whatsappHref, type PageKey } from './content'
+import { BUSINESS, PAGES, whatsappHref, type PageKey, url } from './content'
 import { Close, WhatsApp } from './icons'
 
 /*
@@ -52,13 +52,13 @@ export default function Header({ current }: { current: PageKey }) {
         }}
       />
       <a
-        href="/"
+        href={url('/')}
         aria-label={`${BUSINESS.name}, home`}
         aria-current={current === 'home' ? 'page' : undefined}
         style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none', pointerEvents: 'auto' }}
       >
         <img
-          src="/media/logo-192.webp"
+          src={url('/media/logo-192.webp')}
           alt=""
           width={44}
           height={44}
@@ -133,7 +133,7 @@ export default function Header({ current }: { current: PageKey }) {
             pointerEvents: 'auto',
           }}
         >
-          {[{ key: 'home' as const, name: 'Home', href: '/', blurb: 'Back to the start' }, ...PAGES].map((n) => {
+          {[{ key: 'home' as const, name: 'Home', href: url('/'), blurb: 'Back to the start' }, ...PAGES].map((n) => {
             const on = n.key === current
             return (
               <a

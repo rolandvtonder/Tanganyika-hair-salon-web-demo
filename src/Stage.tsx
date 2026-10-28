@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 import { useScroll, useMotionValueEvent } from 'motion/react'
 import { SCROLL_VH, P, G, INTRO, INTRO_END, WALL_TRAVEL_VW, WALL_RATES, span, ramp, lerp } from './scroll'
-import { CARDS, WALL, img, whatsappHref } from './content'
+import { CARDS, WALL, img, whatsappHref, url } from './content'
 import { useClock } from './hooks'
 import OpenCard from './OpenCard'
 import { ArrowRight, ArrowUpRight, WhatsApp } from './icons'
@@ -252,7 +252,7 @@ export default function Stage() {
                 <WhatsApp size={17} />
                 Book on WhatsApp
               </a>
-              <a href="/gallery/" className="btn btn-ghost" style={{ paddingRight: 10 }}>
+              <a href={url('/gallery/')} className="btn btn-ghost" style={{ paddingRight: 10 }}>
                 See the work
                 <span
                   style={{
@@ -298,7 +298,7 @@ export default function Stage() {
               return (
                 <a
                   key={c.photo}
-                  href="/services/"
+                  href={url('/services/')}
                   aria-label={`${c.label.join(' ')} — see services`}
                   style={{ position: 'absolute', left: px(pos.x), top: px(pos.y), width: px(255), height: px(215), opacity: t, color: '#fff', textDecoration: 'none' }}
                 >
@@ -393,10 +393,10 @@ export default function Stage() {
                 the whole family — men, ladies and kids. Pull up a chair and leave looking sharp.
               </p>
               <div style={{ display: 'flex', gap: px(12), marginTop: px(24) }}>
-                <a href="/services/" className="btn btn-ghost">
+                <a href={url('/services/')} className="btn btn-ghost">
                   Services & prices
                 </a>
-                <a href="/visit/" className="btn btn-ghost">
+                <a href={url('/visit/')} className="btn btn-ghost">
                   Find us
                 </a>
               </div>

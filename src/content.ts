@@ -130,13 +130,20 @@ export const GALLERY = [...LEAD, ...ALL.filter((id) => !LEAD.includes(id))]
 export const WALL_COLS = 5
 export const WALL = Array.from({ length: WALL_COLS }, (_, c) => ALL.filter((_, i) => i % WALL_COLS === c))
 
-export const img = (id: string, size: 'sm' | 'lg' = 'sm') => `/media/cut-${id}-${size}.webp`
+/*
+  Every internal link and image goes through url(), which prefixes the base
+  path the site is served from: '/' locally, '/Tanganyika-hair-salon-web-demo/'
+  on GitHub Pages (set by BASE in the deploy workflow).
+*/
+export const url = (path: string) => import.meta.env.BASE_URL + path.replace(/^\//, '')
+
+export const img = (id: string, size: 'sm' | 'lg' = 'sm') => url(`/media/cut-${id}-${size}.webp`)
 
 /* The site's pages. Each is its own HTML file (see vite.config.ts), so they
    work on any static host with no rewrite rules. */
 export type PageKey = 'home' | 'services' | 'gallery' | 'visit'
 export const PAGES: { key: Exclude<PageKey, 'home'>; name: string; href: string; blurb: string; photo: string }[] = [
-  { key: 'services', name: 'Services & prices', href: '/services/', blurb: 'Fades, beards, braids, twists and kids’ cuts', photo: '31' },
-  { key: 'gallery', name: 'Gallery', href: '/gallery/', blurb: 'Sixty fresh cuts, straight off the chair', photo: '26' },
-  { key: 'visit', name: 'Visit us', href: '/visit/', blurb: 'Hours, directions and how to book', photo: '20' },
+  { key: 'services', name: 'Services & prices', href: url('/services/'), blurb: 'Fades, beards, braids, twists and kids’ cuts', photo: '31' },
+  { key: 'gallery', name: 'Gallery', href: url('/gallery/'), blurb: 'Sixty fresh cuts, straight off the chair', photo: '26' },
+  { key: 'visit', name: 'Visit us', href: url('/visit/'), blurb: 'Hours, directions and how to book', photo: '20' },
 ]
