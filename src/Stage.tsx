@@ -90,7 +90,6 @@ export default function Stage() {
   const y3 = lerp(lerp(G.g3.enter, G.g3.mid, m1), G.g3.end, m2)
 
   const stat = span(ms, INTRO.stat)
-  const active = m2 > 0.5 ? 2 : m1 > 0.5 ? 1 : 0
   const hidden = (y: number, h: number) => y + h < -40 || y > STAGE_H + 40
 
   return (
@@ -191,26 +190,6 @@ export default function Stage() {
             zIndex: 2,
           }}
         >
-          {/* ---- index rail, one number per section ---- */}
-          <div aria-hidden style={box(STAGE_W - 58, 451, 30, 160)}>
-            {['01', '02', '03'].map((n, i) => (
-              <div
-                key={n}
-                className="label"
-                style={{
-                  position: 'absolute',
-                  top: px(i * 64),
-                  right: 0,
-                  fontSize: px(15),
-                  color: i === active ? 'var(--color-gold)' : 'rgba(255,255,255,0.4)',
-                  transition: 'color 300ms ease',
-                }}
-              >
-                {n}
-              </div>
-            ))}
-          </div>
-
           {/* ================= GROUP 1 — the hero ================= */}
           <div
             style={{
